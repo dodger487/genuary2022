@@ -8,7 +8,7 @@ import pylab as pl
 from plotnine import *
 
 
-dimg = mpimg.imread("../primitive/hawaii_night.jpg")
+dimg = mpimg.imread("inputs/hawaii_night.jpg")
 
 # Computed to get to 10k points...
 num_points = 10000
