@@ -69,7 +69,7 @@ generate_world <- function(canvas_size, color_palette) {
     # Plot the ground
     geom_rect(aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax, fill = ymin), data=land_df) +
     scale_fill_gradient(low="black", high=ground_color, guide = "none") +
-    coord_fixed(xlim = c(0, canvas_size), ylim = c(0, canvas_size)) +
+    coord_fixed(xlim = c(0, canvas_size), ylim = c(0, canvas_size), expand=F) +
     theme_void()
 }
 
@@ -77,8 +77,12 @@ generate_world(100, brewer.pal(n = 5, name = "Dark2"))
 
 # Several palettes from https://cran.r-project.org/web/packages/ghibli/index.html
 generate_world(100, sample(ghibli::ghibli_palette("TotoroMedium")))
+ggsave("outputs/day03_space_totoro1.png", height = 4, width = 4, units = "in")
 generate_world(100, sample(ghibli::ghibli_palette("MononokeLight")))
+ggsave("outputs/day03_space_mononoke.png", height = 4, width = 4, units = "in")
 generate_world(100, sample(ghibli::ghibli_palette("PonyoLight")))
+ggsave("outputs/day03_space_ponyo.png", height = 4, width = 4, units = "in")
 generate_world(100, sample(ghibli::ghibli_palette("MarnieMedium1")))
+ggsave("outputs/day03_space_marnie3.png", height = 4, width = 4, units = "in")
 generate_world(100, sample(ghibli::ghibli_palette("SpiritedLight")))
-
+ggsave("outputs/day03_space_spirited.png", height = 4, width = 4, units = "in")
