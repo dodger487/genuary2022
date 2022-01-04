@@ -11,6 +11,10 @@ from scipy.spatial import Delaunay
 from skimage import feature
 
 
+def rgb2gray(rgb):
+	return np.dot(rgb[...,:3], [0.2989, 0.5870, 0.1140])
+
+
 def dither_with_points(fname, num_points, background_color="black"):
 	dimg = mpimg.imread(fname)  # Read the image
 	if len(dimg.shape) > 2:
@@ -49,3 +53,33 @@ def dither_with_points(fname, num_points, background_color="black"):
 				colour = background_color))
 	)
 	return new_img
+
+
+# pointalism
+hawaii_points = dither_with_points("inputs/hawaii_night.jpg", 100000)
+hawaii_points.save(
+	"outputs/day02_points_hawaii_black.jpg", 
+	height=img_height / img_width * 4, 
+	width=4, 
+	units="in"
+)
+
+hawaii_points_white = dither_with_points("inputs/hawaii_night.jpg", 100000, "white")
+hawaii_points_white.save(
+	"outputs/day02_points_hawaii_white.jpg", 
+	height=img_height / img_width * 4, 
+	width=4, 
+	units="in"
+)
+
+doggy = dither_with_points("inputs/happy_doggy_grayscale.jpeg", 50000, "white")
+doggy.save(
+	"outputs/happy_doggy_grayscale.jpg", 
+)
+
+(dither_with_points("inputs/gg_bridge1.png", 50000, "black")
+	.save("outputs/day02_gg_bridge1_black.png"))
+
+(dither_with_points("inputs/gg_bridge2.png", 50000, "white")
+	.save("outputs/day02_gg_bridge2_white.png"))
+
